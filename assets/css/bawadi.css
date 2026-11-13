@@ -600,3 +600,11 @@ html[lang="ar"] .d3 .as-fab{font-size:15px;font-weight:700}
 @media print{
   .d3 .t3-marquee,.d3 .t3-ask,.d3 .t3-leaves,.d3 .t3-ai,.d3 .t3-footmark,.d3 .t3-j-nav{display:none}
 }
+
+/* ---------- Fit to the margins on phones ---------- */
+@media (max-width:640px){
+  .d3 .t3-word-fill{margin-inline:0;font-size:19.5vw}
+  .d3 .t3-place{letter-spacing:.2em;font-size:11px}
+  .d3 .site-footer{padding-bottom:84px}
+}
+@media (max-width:640px){.d3 .t3-creds{flex-direction:column;align-items:flex-start;gap:10px;text-align:start;letter-spacing:.08em}.d3 .t3-creds li{align-items:flex-start}.d3 .t3-creds li::before{margin-top:6px}.d3 .t3-ask input{font-size:12.5px}}
