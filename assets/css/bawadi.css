@@ -636,3 +636,29 @@ html[lang="ar"] .d3 .as-fab{font-size:15px;font-weight:700}
 .d3 .t3-journey.is-live .t3-j-item:nth-child(even) .t3-j-num{inset-inline:8px auto}
 .d3 .t3-journey.is-live .t3-j-num{bottom:auto;top:calc(100% + 8px)}
 .d3 .footer-bar{padding-bottom:96px}
+
+/* ---------- Phones and tablets: the two hero photographs sit fully inside the screen, evenly placed ---------- */
+@media (max-width:900px){
+  .d3 .t3-leaf.l2,.d3 .t3-leaf.l3{top:auto;bottom:calc(var(--marq-h,70px) + 14px);width:clamp(96px,26vw,190px);rotate:0deg}
+  .d3 .t3-leaf.l2{inset-inline-start:max(14px,4vw);aspect-ratio:6/5}
+  .d3 .t3-leaf.l3{inset-inline-end:max(14px,4vw);aspect-ratio:5/6}
+  .d3 .t3-hero-in{padding-bottom:calc(clamp(96px,26vw,190px) * 1.2 + 30px)}
+}
+/* Phones and tablets: the photographs get their own row between the question box and the moving band */
+@media (max-width:900px){
+  .d3 .t3-hero{display:flex;flex-direction:column}
+  .d3 .t3-hero-in{order:1;padding-bottom:0}
+  .d3 .t3-leaves{order:2;position:relative;inset:auto;display:flex;justify-content:space-between;align-items:flex-end;width:calc(100% - 36px);max-width:620px;margin:30px auto -8px;pointer-events:none}
+  .d3 .t3-marquee{order:3}
+  .d3 .t3-hero > .wrap{order:4}
+  .d3 .t3-leaf.l2,.d3 .t3-leaf.l3{position:relative;inset:auto;bottom:auto;width:clamp(120px,38%,230px)}
+  .d3 .t3-leaf.l2{aspect-ratio:6/5;margin-bottom:18px}
+  .d3 .t3-leaf.l3{aspect-ratio:5/6}
+  .d3 .t3-creds{justify-content:center}
+}
+
+/* ---------- Desktop hero: the left pair of photographs mirrors the right pair (same sizes, spacing and overlap) ---------- */
+@media (min-width:901px){
+  .d3 .t3-leaf.l1{--lr:62% 8% 62% 8%;inset-inline-start:2vw;top:calc(var(--word) * .86 + 12.5vw);width:9vw;aspect-ratio:5/8;rotate:-3deg}
+  .d3 .t3-leaf.l2{--lr:8% 62% 8% 62%;inset-inline-start:7.5vw;top:calc(var(--word) * .86 + 24vw);width:11vw;aspect-ratio:4/5;rotate:2deg}
+}
