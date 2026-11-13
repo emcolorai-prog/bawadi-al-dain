@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const [srcFile, outFile] = process.argv.slice(2);
 const src = fs.readFileSync(srcFile, 'utf8');
-const V = '20261113';
+// Version stamp from the contents of the CSS and JS files: a changed file gets a new address, so browsers never mix old and new
+const V = require('crypto').createHash('md5').update(['assets/css/bawadi.css','assets/css/arrahma.css','assets/css/base.css','assets/css/corporate.css','assets/css/wheel.css','assets/css/assistant.css','assets/js/bawadi.js','assets/js/arrahma.js','assets/js/assistant.js','assets/js/i18n.js','assets/js/site.js','assets/js/wheel.js'].map(function (f) { try { return require('fs').readFileSync(require('path').join(__dirname, '..', f)); } catch (e) { return ''; } }).join('')).digest('hex').slice(0, 10);
 const must = (ok, label) => { if (!ok) { throw new Error('Arrahma build: not found: ' + label); } return ok; };
 const grab = (re, label) => must((src.match(re) || [])[0], label);
 const textOf = (key) => {
