@@ -608,3 +608,31 @@ html[lang="ar"] .d3 .as-fab{font-size:15px;font-weight:700}
   .d3 .site-footer{padding-bottom:84px}
 }
 @media (max-width:640px){.d3 .t3-creds{flex-direction:column;align-items:flex-start;gap:10px;text-align:start;letter-spacing:.08em}.d3 .t3-creds li{align-items:flex-start}.d3 .t3-creds li::before{margin-top:6px}.d3 .t3-ask input{font-size:12.5px}}
+
+/* ---------- Footer: the full name glides past slowly, so every letter is seen ---------- */
+.d3 .t3-footmark,.d3 .t3-footmark{width:100%;max-width:none;margin:0;overflow:hidden;padding:clamp(24px,3vw,44px) 0 0}
+.d3 .t3-fm-track{display:flex;align-items:center;width:max-content;animation:t3fm 48s linear infinite}
+.d3 .t3-fm-track span{flex:none;display:block;font-size:clamp(64px,12vw,220px)}
+.d3 .t3-fm-track i{flex:none;width:.5em;height:.5em;margin:0 .45em;border-radius:0 80% 0 80%;background:rgba(var(--lime-rgb),.35);font-size:clamp(32px,6vw,110px)}
+@keyframes t3fm{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.d3 .t3-fm-track{animation:none}}
+@media (max-width:640px){.d3 .t3-footmark{width:100%}.d3 .t3-fm-track span{font-size:84px}}
+
+/* ---------- Journey as a list (phones, tablets): the stage number sits above its photograph ---------- */
+.d3 .t3-journey:not(.is-live) .t3-j-num{position:static;display:block;margin:0 0 8px;font-size:clamp(40px,10vw,72px);line-height:1;text-align:end}
+.d3 .t3-journey:not(.is-live) .t3-j-item:nth-child(even) .t3-j-num{text-align:start}
+.d3 .footer-bar{padding-bottom:78px}
+@media (max-width:640px){.d3 .site-footer{padding-bottom:0}}
+
+/* ---------- Detail pass ---------- */
+.d3 .form-card .enq .opt{color:var(--paper-muted);font-weight:500}
+.d3 .bw-wheel-chips,.d3 .media-filter{flex-wrap:wrap}
+@media (max-width:900px){
+  .d3 .t3-term-log{height:auto;min-height:90px;max-height:320px}
+}
+.d3 .t3-term-log{height:auto;min-height:110px;max-height:300px}
+/* Journey (desktop scene): the stage number sits just above its frame, never on it */
+.d3 .t3-journey.is-live .t3-j-num{top:auto;bottom:calc(100% + 6px);inset-inline-end:8px;font-size:clamp(40px,4.4vw,72px)}
+.d3 .t3-journey.is-live .t3-j-item:nth-child(even) .t3-j-num{inset-inline:8px auto}
+.d3 .t3-journey.is-live .t3-j-num{bottom:auto;top:calc(100% + 8px)}
+.d3 .footer-bar{padding-bottom:96px}

@@ -287,7 +287,7 @@ function bawadi(h, src, V) {
 
   // ---- Footer wordmark ----
   must(h.includes('<footer class="site-footer footer-light">'), 'footer');
-  h = h.replace('<footer class="site-footer footer-light">', '<footer class="site-footer footer-light">\n  <div class="t3-footmark" aria-hidden="true" lang="en" dir="ltr"><span>BAWADI AL DAIN</span></div>');
+  h = h.replace('<footer class="site-footer footer-light">', '<footer class="site-footer footer-light">\n  <div class="t3-footmark" aria-hidden="true" lang="en" dir="ltr"><div class="t3-fm-track"><span>BAWADI AL DAIN</span><i></i><span>BAWADI AL DAIN</span><i></i><span>BAWADI AL DAIN</span><i></i><span>BAWADI AL DAIN</span><i></i></div></div>');
 
   // ---- New labels (both languages) and this design's script ----
   must(/<script src="assets\/js\/i18n\.js[^"]*"><\/script>/.test(h), 'i18n.js');

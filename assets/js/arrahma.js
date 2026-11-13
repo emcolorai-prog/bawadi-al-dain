@@ -325,7 +325,7 @@
       var f = b.getAttribute('data-f'), n = src.filter(function (li) { return f === 'all' || (f === 'video' ? li.getAttribute('data-type') === 'video' : catOf(li) === f); }).length;
       qs('b', b).textContent = '· ' + n;
     });
-    var render = function () {
+    var renderDeck = function () {
       deck.innerHTML = '';
       cardsEl = [];
       var n = Math.min(4, order.length);
@@ -344,7 +344,7 @@
       qs('[data-dcount]').textContent = (order.length ? top + 1 : 0) + ' / ' + order.length;
       qs('.a-deck-bar i').style.width = (order.length ? (top + 1) / order.length * 100 : 0) + '%';
     };
-    var step = function (d) { if (!order.length) { return; } top = (top + d + order.length) % order.length; render(); };
+    var step = function (d) { if (!order.length) { return; } top = (top + d + order.length) % order.length; renderDeck(); };
     var drag = function (c) {
       var st = null, dx = 0, dy = 0;
       c.addEventListener('pointerdown', function (e) { st = { x: e.clientX, y: e.clientY }; dx = dy = 0; c.setPointerCapture(e.pointerId); c.classList.add('is-drag'); });
@@ -355,7 +355,7 @@
         if (Math.abs(dx) > 90) {
           c.style.transform = 'translate3d(' + (dx > 0 ? 1 : -1) * 700 + 'px,' + dy + 'px,0) rotate(' + (dx > 0 ? 24 : -24) + 'deg)'; c.style.opacity = '0';
           setTimeout(function () { step(1); }, 280);
-        } else if (Math.abs(dx) < 5 && Math.abs(dy) < 5) { c.style.transform = ''; c._btn.click(); render(); } else { render(); }
+        } else if (Math.abs(dx) < 5 && Math.abs(dy) < 5) { c.style.transform = ''; c._btn.click(); renderDeck(); } else { renderDeck(); }
       };
       c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
       c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c._btn.click(); } });
@@ -363,12 +363,12 @@
     var apply = function (f) {
       filt.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-f') === f)); });
       order = src.filter(function (li) { var ok = f === 'all' || (f === 'video' ? li.getAttribute('data-type') === 'video' : catOf(li) === f); li.hidden = !ok; return ok; });
-      top = 0; render();
+      top = 0; renderDeck();
     };
     filt.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-f')); }); });
     qsa('[data-dstep]').forEach(function (b) { b.addEventListener('click', function () { step(+b.getAttribute('data-dstep') * (rtl() ? -1 : 1)); }); });
     apply('all');
-    onLang.push(render);
+    onLang.push(renderDeck);
   }
 
   // ---------- Arrahma AI panel ----------
