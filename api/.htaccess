@@ -1,0 +1,4 @@
+# The assistant's settings hold the API key: never serve them, even if PHP is switched off
+<FilesMatch "^config(\.sample)?\.php$">
+  Require all denied
+</FilesMatch>

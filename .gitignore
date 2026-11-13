@@ -1,0 +1,9 @@
+# Secrets: the real API key file stays on the server only (copy api/config.sample.php to api/config.php there)
+api/config.php
+api/*.log
+api/data/
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/

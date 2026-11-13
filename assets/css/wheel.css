@@ -1,0 +1,158 @@
+/* Harvest Wheel gallery and its lightbox, shared by the Bawadi Al Dain and Arrahma pages
+   (behaviour in assets/js/wheel.js). Colours come from the variables below; the defaults are
+   Bawadi Al Dain's green and lime, and a page can set its own on its <body>. */
+:root{
+  --wh-accent:#A6CE39;            /* rings, chips, progress */
+  --wh-accent-rgb:166,206,57;
+  --wh-on-accent:#0E3A1C;         /* text on the accent */
+  --wh-deep-rgb:15,74,36;         /* floor shadow, play button */
+  --wh-cap-rgb:6,33,16;           /* caption shade on the front card */
+  --wh-card-bg:#e4eed8;
+  --wh-lb-1:rgba(27,114,54,.92);  /* lightbox background, centre to edge */
+  --wh-lb-2:rgba(10,53,25,.97);
+  --wh-lb-3:#051C0D;
+  --wh-backdrop:rgba(4,20,10,.6);
+  --wh-media-bg:#0A3519;
+  --wh-leaf-1:rgba(196,226,122,.4);
+  --wh-leaf-2:rgba(30,123,60,.05);
+  --wh-font:var(--display);
+}
+
+/* ==================== Harvest Wheel: 3D ring of the gallery (assets/js/wheel.js) ==================== */
+/* Landscape cards (4:3), the shape of most of the photographs, so they are shown without cropping */
+.bw-wheel{--w:clamp(290px,30vw,440px);--h:calc(var(--w) * .75);--r:calc(var(--w) * 2.75);--stage:min(1480px,calc(100vw - 32px));margin:-8px 0 0}
+.bw-wheel[hidden]{display:none}
+/* While the wheel is shown, the full grid and its filter wait behind "View the full gallery" */
+.wheel-on:not(.wheel-all) .media-filter,.wheel-on:not(.wheel-all) .media-grid{display:none}
+.wheel-on.wheel-all .media-filter{margin-top:48px}
+.bw-wheel-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.bw-wheel-chips button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border:1px solid var(--line);border-radius:0;border-start-start-radius:16px;border-end-end-radius:16px;background:#fff;color:var(--ink);font:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.bw-wheel-chips button:hover{border-color:var(--brand);transform:translateY(-1px)}
+.bw-wheel-chips button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.bw-wheel-chips .n{font-weight:400;opacity:.75}
+
+/* The stage: wider than the text column, on the page's own background, faded at both sides */
+.bw-wheel-stage{position:relative;isolation:isolate;width:var(--stage);margin-inline:calc(50% - var(--stage) / 2);height:calc(var(--h) + 150px);overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+  perspective:calc(var(--w) * 6.2);perspective-origin:50% 38%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.bw-wheel-stage.is-dragging{cursor:grabbing}
+.bw-wheel-stage:focus-visible{outline:3px solid var(--brand);outline-offset:-3px}
+/* A soft shadow on the floor under the ring */
+.bw-wheel-stage::after{content:"";position:absolute;z-index:-1;left:18%;right:18%;bottom:24px;height:70px;border-radius:50%;background:radial-gradient(closest-side,rgba(var(--wh-deep-rgb),.2),rgba(var(--wh-deep-rgb),0))}
+.bw-wheel-ring{position:absolute;top:40px;left:calc(50% - var(--w) / 2);width:var(--w);height:var(--h);transform-style:preserve-3d;transform:translateZ(calc(var(--r) * -1))}
+
+/* Cards */
+.bw-card{position:absolute;inset:0;display:block;padding:0;border:0;overflow:hidden;background:var(--wh-card-bg);cursor:pointer;color:#fff;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform;
+  border-radius:0;border-start-start-radius:calc(var(--w) * .14);border-end-end-radius:calc(var(--w) * .14);
+  filter:brightness(calc(1 - var(--d,0) * .13)) saturate(calc(1 - var(--d,0) * .1));opacity:calc(1 - var(--d,0) * .14);
+  box-shadow:0 30px 50px -28px rgba(0,0,0,.65);
+  -webkit-box-reflect:below 10px linear-gradient(transparent 84%,rgba(255,255,255,.22));
+  transition:box-shadow .45s}
+.bw-card-img{position:absolute;inset:0;background:var(--img,none) center/cover no-repeat;transition:transform 1.2s ease}
+/* A photo much wider (or taller) than the card (class set by wheel.js): shown whole, not cropped,
+   over a blurred and enlarged copy of itself that fills the rest of the card */
+.bw-card.is-whole::before{content:"";position:absolute;inset:-30px;background:var(--img,none) center/cover no-repeat;filter:blur(20px) saturate(1.15) brightness(.78);transform:scale(1.1)}
+.bw-card.is-whole .bw-card-img{background-size:contain}
+.bw-card.is-front{box-shadow:0 0 0 4px #fff,0 0 0 8px var(--wh-accent),0 50px 80px -30px rgba(0,0,0,.75)}
+.bw-card.is-front:hover .bw-card-img{transform:scale(1.05)}
+.bw-card.is-far{opacity:0;visibility:hidden;pointer-events:none}
+.bw-card:focus-visible{outline:none;box-shadow:0 0 0 4px #fff,0 0 0 9px #FFD45A,0 50px 80px -30px rgba(0,0,0,.75)}
+/* Caption over the front card */
+.bw-card-cap{position:absolute;inset:auto 0 0;display:flex;flex-direction:column;gap:3px;padding:56px 18px 18px;text-align:start;
+  background:linear-gradient(0deg,rgba(var(--wh-cap-rgb),.92) 0%,rgba(var(--wh-cap-rgb),.55) 55%,transparent);opacity:0;transform:translateY(12px);transition:opacity .4s,transform .45s}
+.bw-card.is-front .bw-card-cap{opacity:1;transform:none}
+.bw-card-cap small{font-family:var(--wh-font);font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wh-accent)}
+.bw-card-cap b{font-size:15.5px;font-weight:700;line-height:1.3}
+html[lang="ar"] .bw-card-cap small{font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;letter-spacing:0;font-size:12.5px}
+.bw-card .media-play{top:42%;width:58px;height:58px;margin:-29px 0 0 -29px;background:rgba(var(--wh-deep-rgb),.55);border-color:#fff}
+.bw-card.is-front .media-play{animation:bwPulse 2.2s ease-out infinite}
+@keyframes bwPulse{0%{box-shadow:0 0 0 0 rgba(var(--wh-accent-rgb),.7)}80%,100%{box-shadow:0 0 0 18px rgba(var(--wh-accent-rgb),0)}}
+.bw-card .media-dur{top:14px;bottom:auto;inset-inline-end:14px}
+.bw-card:not(.is-front) .media-play,.bw-card:not(.is-front) .media-dur{opacity:0}
+
+/* Controls under the stage */
+.bw-wheel-bar{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.bw-wheel-btn{flex:none;display:grid;place-items:center;width:48px;height:48px;padding:0;border:2px solid var(--wh-accent);border-radius:50%;background:#fff;color:var(--brand);cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.bw-wheel-btn:hover{background:var(--brand);border-color:var(--brand);color:#fff;transform:scale(1.06)}
+.bw-wheel-btn .chev{width:11px;height:11px;border-top:2.5px solid currentColor;border-inline-end:2.5px solid currentColor;transform:rotate(45deg);margin-inline-end:4px}
+html[dir="rtl"] .bw-wheel-btn .chev{transform:rotate(-45deg)}
+.bw-wheel-btn[data-step="-1"] .chev{transform:rotate(-135deg);margin-inline:4px 0}
+html[dir="rtl"] .bw-wheel-btn[data-step="-1"] .chev{transform:rotate(135deg)}
+.bw-wheel-play{background:var(--brand);border-color:var(--brand);color:#fff}
+.bw-wheel-play:hover{background:var(--brand-2)}
+.bw-wheel-play .pp{width:12px;height:14px;border-inline:4px solid currentColor;box-sizing:border-box}
+.is-paused .bw-wheel-play .pp{width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent currentColor;margin-inline-start:4px}
+html[dir="rtl"] .is-paused .bw-wheel-play .pp{border-width:8px 13px 8px 0;border-color:transparent currentColor transparent transparent}
+.bw-wheel-progress{position:relative;width:min(260px,34vw);height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.bw-wheel-progress span{position:absolute;inset-block:0;inset-inline-start:0;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--wh-accent));transition:width .4s}
+html[dir="rtl"] .bw-wheel-progress span{background:linear-gradient(270deg,var(--brand),var(--wh-accent))}
+.bw-wheel-count{min-width:62px;font-family:var(--wh-font);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--muted);text-align:center}
+.bw-wheel-hint{margin:14px auto 0!important;font-size:13.5px;color:var(--muted);text-align:center}
+.bw-wheel-all{display:flex;margin:16px auto 0;background:none;border-top:0;border-inline:0;cursor:pointer;font:inherit;font-weight:700}
+@media (max-width:960px){
+  .bw-wheel{--w:clamp(250px,40vw,340px)}
+}
+@media (max-width:640px){
+  .bw-wheel{--w:76vw;--r:calc(var(--w) * 2.3);--stage:100vw}
+  .bw-wheel-stage{height:calc(var(--h) + 110px);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
+  .bw-wheel-ring{top:28px}
+  .bw-wheel-chips{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:2px 16px 6px;scrollbar-width:none}
+  .bw-wheel-chips button{flex:none}
+  .bw-wheel-progress{width:22vw}
+  .bw-card{-webkit-box-reflect:none}
+}
+
+/* ==================== Lightbox on this page (class added by assets/js/wheel.js) ==================== */
+.lightbox.lb-fancy{--lb-leaf:44px;background:radial-gradient(ellipse 70% 65% at 50% 45%,var(--wh-lb-1) 0%,var(--wh-lb-2) 60%,var(--wh-lb-3) 100%);color:#fff}
+.lightbox.lb-fancy::backdrop{background:var(--wh-backdrop);backdrop-filter:blur(6px)}
+/* Opening: a circle grows out of the card or tile that was selected */
+.lightbox.lb-fancy[open]{animation:lbReveal .75s cubic-bezier(.2,.75,.2,1) both}
+@keyframes lbReveal{from{clip-path:circle(0 at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150% at var(--ox,50%) var(--oy,50%))}}
+.lightbox.lb-fancy.lb-out{animation:lbOut .28s ease forwards}
+@keyframes lbOut{to{opacity:0;transform:scale(.985)}}
+/* Leaves drifting in the background */
+.lb-leaf{position:absolute;z-index:0;border-radius:72% 0;pointer-events:none;opacity:.5}
+.lb-leaf-a{width:180px;height:180px;top:-50px;inset-inline-start:-40px;background:linear-gradient(135deg,rgba(var(--wh-accent-rgb),.5),rgba(var(--wh-accent-rgb),.05));animation:lbLeaf 14s ease-in-out infinite alternate}
+.lb-leaf-b{width:120px;height:120px;bottom:-30px;inset-inline-end:8%;background:linear-gradient(135deg,var(--wh-leaf-1),var(--wh-leaf-2));animation:lbLeaf 11s ease-in-out -4s infinite alternate-reverse}
+@keyframes lbLeaf{from{transform:translate(0,0) rotate(0)}to{transform:translate(30px,24px) rotate(14deg)}}
+.lb-fancy .lb-stage{z-index:1;inset:92px 110px 140px;perspective:1400px}
+.lb-fancy .lb-stage img,.lb-fancy .lb-stage video{border-radius:0;border-start-start-radius:var(--lb-leaf);border-end-end-radius:var(--lb-leaf);background:var(--wh-media-bg);
+  box-shadow:0 0 0 4px rgba(255,255,255,.92),0 0 0 9px var(--wh-accent),0 60px 100px -40px rgba(0,0,0,.8);animation:lbIn .7s cubic-bezier(.2,.75,.2,1) both}
+.lb-fancy .lb-stage[data-dir="next"] > *{animation-name:lbNext}
+.lb-fancy .lb-stage[data-dir="prev"] > *{animation-name:lbPrev}
+html[dir="rtl"] .lb-fancy .lb-stage[data-dir="next"] > *{animation-name:lbPrev}
+html[dir="rtl"] .lb-fancy .lb-stage[data-dir="prev"] > *{animation-name:lbNext}
+@keyframes lbIn{from{opacity:0;transform:rotateY(-16deg) scale(.78);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes lbNext{from{opacity:0;transform:translateX(22%) rotateY(-34deg) scale(.86)}to{opacity:1;transform:none}}
+@keyframes lbPrev{from{opacity:0;transform:translateX(-22%) rotateY(34deg) scale(.86)}to{opacity:1;transform:none}}
+/* Top line: the collection, the count and a progress line */
+.lb-fancy .lb-cat{position:absolute;z-index:2;top:26px;inset-inline-start:28px;margin:0;padding:7px 16px;border-radius:0;border-start-start-radius:14px;border-end-end-radius:14px;background:var(--wh-accent);color:var(--wh-on-accent);font-family:var(--wh-font);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.lb-fancy .lb-cat:empty{display:none}
+html[lang="ar"] .lb-fancy .lb-cat{font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;letter-spacing:0;font-size:14px}
+.lb-fancy .lb-count,[dir="rtl"] .lb-fancy .lb-count{z-index:2;top:30px;left:50%;right:auto;transform:translateX(-50%);font-family:var(--wh-font);font-size:14px;font-weight:600;letter-spacing:.14em;opacity:.85}
+.lb-progress{position:absolute;z-index:2;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12)}
+.lb-progress span{position:absolute;inset-block:0;inset-inline-start:0;background:linear-gradient(90deg,var(--brand),var(--wh-accent));transition:width .5s cubic-bezier(.2,.75,.2,1)}
+/* Caption */
+.lb-fancy .lb-cap{z-index:2;bottom:46px;max-width:none!important;margin:0 auto!important;padding-inline:90px;text-align:center;font-size:19px;font-weight:700;letter-spacing:.005em;color:#fff!important;animation:lbCap .6s .15s both}
+@keyframes lbCap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* Buttons: glassy circles with a lime ring */
+.lb-fancy .lb-btn{z-index:3;width:58px;height:58px;border:2px solid rgba(var(--wh-accent-rgb),.75);background:rgba(255,255,255,.08);backdrop-filter:blur(6px);color:#fff;transition:background .2s,color .2s,transform .25s,border-color .2s}
+.lb-fancy .lb-btn:hover{background:var(--wh-accent);border-color:var(--wh-accent);color:var(--wh-on-accent)}
+.lb-fancy .lb-prev{inset-inline-start:26px}
+.lb-fancy .lb-next{inset-inline-end:26px}
+.lb-fancy .lb-prev:hover{transform:translateX(-3px)}
+.lb-fancy .lb-next:hover{transform:translateX(3px)}
+[dir="rtl"] .lb-fancy .lb-prev:hover{transform:translateX(3px)}
+[dir="rtl"] .lb-fancy .lb-next:hover{transform:translateX(-3px)}
+.lb-fancy .lb-close{top:18px;inset-inline-end:22px;width:52px;height:52px}
+.lb-fancy .lb-close:hover{transform:rotate(90deg)}
+@media (max-width:640px){
+  .lightbox.lb-fancy{--lb-leaf:26px}
+  .lb-fancy .lb-stage{inset:84px 10px 120px}
+  .lb-fancy .lb-btn{width:50px;height:50px}
+  .lb-fancy .lb-prev,.lb-fancy .lb-next{top:auto;bottom:24px;margin-top:0}
+  .lb-fancy .lb-cap{bottom:84px;padding-inline:16px;font-size:16px}
+  .lb-fancy .lb-cat{top:24px;inset-inline-start:16px}
+  .lb-fancy .lb-count,[dir="rtl"] .lb-fancy .lb-count{top:auto;bottom:40px}
+}

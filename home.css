@@ -1,0 +1,15 @@
+/* Bawadi Al Dain Group — homepage colours (layout comes from assets/css/corporate.css) */
+:root{
+  --brand:#1c2a35;
+  --brand-2:#2d4254;
+  --accent:#b08d57;
+  --accent-ink:#7a5c2e;
+  --surface:#f4f5f6;
+}
+.site-footer .wordmark{color:#fff}
+.site-footer .wordmark small{color:rgba(255,255,255,.7)}
+.footer-brand p{margin-top:14px;max-width:36ch}
+/* Each company keeps its own colour in the contact columns */
+.c-b{--c:#173D32}
+.c-a{--c:#283B2B}
+.c-o{--c:#101D32}
