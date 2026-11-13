@@ -14,7 +14,7 @@
   var KB = window.SITE_KB || { chunks: [], pages: {} };
   var me = document.currentScript || document.querySelector('script[src*="assistant.js"]');
   var base = me ? me.src.replace(/assets\/js\/assistant\.js.*$/, '') : '';
-  var API = base + 'api/chat.php';
+  var API = base + 'api/chat';
   var page = document.body.classList.contains('arrahma') ? 'arrahma' : 'bawadi';
   var other = page === 'bawadi' ? 'arrahma' : 'bawadi';
   var lang = function () { return window.siteLang ? window.siteLang.get() : (document.documentElement.lang || 'en'); };

@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/bawadi", "destination": "/", "permanent": true },
+    { "source": "/bawadi/", "destination": "/", "permanent": true },
+    { "source": "/ocean", "destination": "http://ocean-ei.com/", "permanent": true },
+    { "source": "/ocean/(.*)", "destination": "http://ocean-ei.com/", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+  ]
+}

@@ -16,6 +16,9 @@ RewriteRule ^ %{REQUEST_SCHEME}://bawadialdaingroup.com%{REQUEST_URI} [L,R=301]
 # (?lang= is kept). Hosts that ignore this file use the forwarding page in bawadi/index.html.
 RewriteRule ^bawadi/?(index\.html)?$ / [L,R=301]
 
+# The website assistant: /api/chat runs api/chat.php on this kind of host (Vercel uses api/chat.js)
+RewriteRule ^api/chat$ api/chat.php [L]
+
 # OCEAN Engineering & Investment has its own website; old /ocean/ links go there (?lang= is kept).
 # Hosts that ignore this file use the forwarding page in ocean/index.html.
 RewriteRule ^ocean(/.*)?$ http://ocean-ei.com/ [L,R=301]

@@ -1,10 +1,10 @@
 // Builds the website: the Bawadi Al Dain page (index.html) and the Arrahma page (arrahma/index.html).
 //
-//   node tools/build-site.js
+//   node tools/build-site.cjs
 //
 // Reads   tools/source/bawadi.html, tools/source/arrahma.html   (all texts, translations, forms and media lists)
 // Writes  index.html                    (Bawadi Al Dain; design code in tools/bawadi-design.js, assets/css/bawadi.css, assets/js/bawadi.js)
-//         arrahma/index.html            (Arrahma; built by tools/build-arrahma.js, assets/css/arrahma.css, assets/js/arrahma.js)
+//         arrahma/index.html            (Arrahma; built by tools/build-arrahma.cjs, assets/css/arrahma.css, assets/js/arrahma.js)
 //         assets/data/site-kb.json, assets/js/assistant-kb.js   (what the AI assistant knows)
 // To change any text, edit it in tools/source/ (all languages are there), then run this script again.
 
@@ -15,7 +15,7 @@ const root = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(root, f), 'utf8');
 const write = (f, s) => { fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true }); fs.writeFileSync(path.join(root, f), s); };
 const V = '20261113';
-const design = require('./bawadi-design.js');
+const design = require('./bawadi-design.cjs');
 
 const img = (cls, src, w, h, extra) => `<img class="${cls}" src="${src}" alt="" width="${w}" height="${h}"${extra || ''}>`;
 const DESIGN = {
@@ -148,7 +148,7 @@ function extract(html, page, company) {
 const bawadiSrc = read('tools/source/bawadi.html');
 const arrahmaSrc = read('tools/source/arrahma.html');
 write('index.html', buildBawadi(bawadiSrc));
-console.log(execFileSync(process.execPath, [path.join(__dirname, 'build-arrahma.js'), path.join(root, 'tools/source/arrahma.html'), path.join(root, 'arrahma/index.html')]).toString().trim());
+console.log(execFileSync(process.execPath, [path.join(__dirname, 'build-arrahma.cjs'), path.join(root, 'tools/source/arrahma.html'), path.join(root, 'arrahma/index.html')]).toString().trim());
 
 const kb = {
   generated: new Date().toISOString().slice(0, 10),

@@ -1,5 +1,5 @@
 // Builds the Arrahma page in its final design (the layout from the client's reference video).
-//   node tools/build-arrahma.js <source arrahma page> <output file>
+//   node tools/build-arrahma.cjs <source arrahma page> <output file>
 // The source page supplies every text, translation (window.I18N), form and media list; this file only
 // lays them out and adds short labels for the new parts (English, Arabic, French).
 const fs = require('fs');

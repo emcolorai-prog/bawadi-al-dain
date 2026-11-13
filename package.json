@@ -1,0 +1,12 @@
+{
+  "name": "bawadi-al-dain",
+  "private": true,
+  "type": "module",
+  "description": "Bawadi Al Dain and Arrahma websites. Static pages; api/chat.js is the Vercel function behind the website assistant.",
+  "scripts": {
+    "build-site": "node tools/build-site.cjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0"
+  }
+}

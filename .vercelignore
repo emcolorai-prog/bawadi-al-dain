@@ -1,0 +1,7 @@
+# Not part of the published website
+tools/
+api/chat.php
+api/config.sample.php
+api/config.php
+api/.htaccess
+home.css
