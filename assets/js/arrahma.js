@@ -153,7 +153,7 @@
   var placePins = function () {
     if (!map) { return; }
     var w = map.clientWidth, h = map.clientHeight, lons = pins.map(function (p) { return +p.getAttribute('data-lon'); });
-    var west = -17.2, east = -5.5, span = window.innerWidth < 641 ? 0.86 : 0.6;
+    var west = -17.2, east = -5.5, span = window.innerWidth < 641 ? 0.86 : 0.88;
     pinXY = pins.map(function (p, i) {
       var f = (lons[i] - west) / (east - west), x = (rtl() ? 1 - f : f) * w * span + w * 0.02;
       p.style.left = x + 'px';

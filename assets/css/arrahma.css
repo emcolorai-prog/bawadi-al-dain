@@ -572,3 +572,25 @@ html[lang="ar"] .a-info dt{font-size:11.5px}
 .a-team p.a-count-sm{margin:0!important;font-size:clamp(70px,7vw,104px);line-height:.85}
 .a-ai-log{height:auto;min-height:80px;max-height:300px}
 .a-foot-in{padding-bottom:100px}
+
+/* ---------- Journey: the site card has its own column beside the map and the operations ---------- */
+.a-journey .a-wrap{width:min(1300px,100% - 64px)}
+.a-jgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(280px,26vw,360px);gap:clamp(32px,4vw,64px);align-items:center}
+.a-jgrid .a-dunes{left:0;right:0;width:100%}
+.a-jgrid .a-sitecard{position:relative;right:auto;bottom:auto;width:100%;height:clamp(300px,34vh,360px)}
+.a-jgrid .a-sc{right:0;left:0;bottom:auto;top:0}
+html[dir="rtl"] .a-jgrid .a-sc{left:0;right:0}
+@media (max-width:960px){
+  .a-jgrid{grid-template-columns:minmax(0,1fr);gap:0}
+  .a-jmain{display:contents}
+  .a-jgrid > .a-sitecard{order:1;height:auto;margin:6px 0 26px}
+  .a-jgrid .a-ops{order:2}
+  .a-jgrid .a-sc{position:relative;display:none;opacity:1;transform:none;pointer-events:auto}
+  .a-jgrid .a-sc.is-on{display:block}
+  .a-journey{height:auto}
+  .a-journey-stage{position:static;height:auto;padding:80px 0}
+  .a-jgrid .a-ops li{opacity:1}
+}
+@media (max-width:960px) and (min-width:641px){.a-jgrid > .a-sitecard{width:min(100%,480px)}}
+@media (min-width:901px){.a-journey .a-wrap{width:min(1300px,100% - 140px)}}
+@media (max-width:960px) and (min-width:641px){.a-jgrid > .a-sitecard{justify-self:center}}

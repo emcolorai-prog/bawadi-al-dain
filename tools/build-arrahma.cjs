@@ -282,6 +282,7 @@ const body = `<body class="company arrahma ar2">
   <section id="journey" class="a-journey" data-journey aria-labelledby="journey-title">
     <div class="a-journey-stage">
       <div class="a-wrap">
+        <div class="a-jgrid"><div class="a-jmain">
         <p class="a-eyebrow"><span data-i18n="ops.eyebrow">Our Operations</span> — <span data-i18n="x.ops.reported">As reported by the company</span></p>
         <h2 id="journey-title" class="a-h2" ${t('x.ops.h')}</h2>
         <p class="a-lead" ${t('x.ops.p')}</p>
@@ -289,9 +290,11 @@ const body = `<body class="company arrahma ar2">
           <svg class="a-dunes" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><path class="d1" d="M0 120C120 90 230 80 360 104s260 40 380 10 190-30 260-12v78H0Z"/><path class="d2" d="M0 150c140-30 290-38 450-14s330 30 550-8v72H0Z"/><path class="route" d="" /></svg>
           <span class="a-atl" ${t('x.atlantic')}</span>
           ${journeySites.map((s) => `<button type="button" class="a-pin" data-pin="${s.k - 1}" data-lon="${s.lon}"><b ${t('sites.' + s.k + 'h')}</b><i></i><small class="ltr">${s.lat}</small></button>`).join('')}
-          <div class="a-sitecard">${journeySites.map((s) => `<div class="a-sc" data-sc="${s.k - 1}">${img(s.img[0], s.img[1], s.img[2])}<div><p class="a-eyebrow" ${t(s.label)}</p><h3 ${t('sites.' + s.k + 'h')}</h3><p ${t('sites.' + s.k + 'p')}</p></div></div>`).join('')}</div>
         </div>
         <ol class="a-ops">${[1, 2, 3, 4].map((i) => `<li data-op="${i}"><p class="a-meta" ${t('ops.' + i + 'm')}</p><h3 ${t('ops.' + i + 'h')}</h3><p ${t('ops.' + i + 'p')}</p></li>`).join('')}</ol>
+        </div>
+        <div class="a-sitecard">${journeySites.map((s) => `<div class="a-sc" data-sc="${s.k - 1}">${img(s.img[0], s.img[1], s.img[2])}<div><p class="a-eyebrow" ${t(s.label)}</p><h3 ${t('sites.' + s.k + 'h')}</h3><p ${t('sites.' + s.k + 'p')}</p></div></div>`).join('')}</div>
+        </div>
       </div>
     </div>
   </section>

@@ -62,7 +62,7 @@
     var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789·', flapTimer = null, shown = false;
     var cells = function () { return qsa('tbody th button, tbody td', board); };
     var build = function (fresh) {
-      var whole = lang() === 'ar' || window.innerWidth < 760;   // Arabic letters join up, so the whole word sits on one flap
+      var whole = lang() === 'ar' || window.innerWidth < 901;   // Arabic letters join up, so the whole word sits on one flap
       cells().forEach(function (c) {
         if (fresh || !c.hasAttribute('data-text')) { c.setAttribute('data-text', c.textContent.replace(/\s+/g, ' ').trim()); }
         var text = c.getAttribute('data-text');
@@ -96,8 +96,8 @@
     build(true);
     seen(board, function () { shown = true; flap(); });
     onLang.push(function () { build(true); });
-    var narrow = window.innerWidth < 760;
-    window.addEventListener('resize', function () { var n = window.innerWidth < 760; if (n !== narrow) { narrow = n; build(false); } });
+    var narrow = window.innerWidth < 901;
+    window.addEventListener('resize', function () { var n = window.innerWidth < 901; if (n !== narrow) { narrow = n; build(false); } });
     board.addEventListener('click', function (e) {
       var tr = e.target.closest && e.target.closest('tbody tr');
       if (!tr) { return; }

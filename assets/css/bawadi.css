@@ -566,7 +566,7 @@ html[lang="ar"] .d3 .as-fab{font-size:15px;font-weight:700}
   .d3 .t3-leaf.l3{inset-inline-end:-2vw;width:16vw;top:auto;bottom:170px}
   .d3 .t3-hero-in{padding-bottom:26vw}
 }
-@media (max-width:760px){
+@media (max-width:900px){
   .bawadi.d3 .t3-board{padding:14px 14px 8px}
   .bawadi.d3 .t3-board :is(th,td):nth-child(3){display:none}
   .bawadi.d3 .t3-board tbody :is(th,td){font-size:12px;white-space:normal}
@@ -662,3 +662,24 @@ html[lang="ar"] .d3 .as-fab{font-size:15px;font-weight:700}
   .d3 .t3-leaf.l1{--lr:62% 8% 62% 8%;inset-inline-start:2vw;top:calc(var(--word) * .86 + 12.5vw);width:9vw;aspect-ratio:5/8;rotate:-3deg}
   .d3 .t3-leaf.l2{--lr:8% 62% 8% 62%;inset-inline-start:7.5vw;top:calc(var(--word) * .86 + 24vw);width:11vw;aspect-ratio:4/5;rotate:2deg}
 }
+
+/* ---------- Desktop hero photographs, anchored to the text area ----------
+   The photographs live in the same grid row as the hero text, in the space below the wordmark, and are
+   sized from that space's own height (container units). Whatever the screen size, they end above the
+   moving band and never overlap it. */
+@media (min-width:901px){
+  .d3 .t3-hero{display:grid;grid-template-columns:minmax(0,1fr)}
+  .d3 .t3-hero > *{grid-column:1}
+  .d3 .t3-hero-in{grid-row:1}
+  .d3 .t3-leaves{grid-row:1;position:relative;inset:auto;z-index:1;margin-top:calc(var(--word) * .86 + 26px);margin-bottom:6px;container-type:size;pointer-events:none}
+  .d3 .t3-marquee{grid-row:2}
+  .d3 .t3-hero > .wrap{grid-row:3}
+  .d3 .t3-leaf{--bh:min(13.75vw,52cqh,240px);--sh:min(14.4vw,54cqh,250px)}
+  .d3 .t3-leaf.l1,.d3 .t3-leaf.l3{top:auto;bottom:calc(var(--bh) * .82 + 10px);height:var(--sh);width:auto;aspect-ratio:5/8}
+  .d3 .t3-leaf.l2,.d3 .t3-leaf.l4{top:auto;bottom:10px;height:var(--bh);width:auto;aspect-ratio:4/5}
+  .d3 .t3-leaf.l1{inset-inline-start:2vw}
+  .d3 .t3-leaf.l2{inset-inline-start:calc(2vw + var(--sh) * .38)}
+  .d3 .t3-leaf.l3{inset-inline-end:2vw}
+  .d3 .t3-leaf.l4{inset-inline-end:calc(2vw + var(--sh) * .38)}
+}
+.bawadi.d3 .t3-board{max-width:100%;overflow-x:auto}
