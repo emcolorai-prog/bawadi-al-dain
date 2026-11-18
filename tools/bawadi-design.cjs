@@ -142,8 +142,8 @@ function bawadi(h, src, V) {
       <span class="t3-leaf l4">${img('assets/img/photos/sorghum-heads.jpg', 765, 1020, ' decoding="async"')}</span>
     </div>
     <div class="t3-hero-in">
-      <h1 id="hero-title" class="t3-word" lang="en" dir="ltr"><span class="sr-only">Bawadi Al Dain General Trading L.L.C</span><span class="t3-word-fill" aria-hidden="true">BAWADI</span></h1>
-      <p class="t3-place"><span class="ltr" lang="en">Al Dain</span><i aria-hidden="true">·</i><span ${t('hero.eyebrow')}</span></p>
+      <h1 id="hero-title" class="t3-word" lang="en" dir="ltr"><span class="sr-only">Bawadi Al Dain General Trading L.L.C</span><span class="t3-word-fill" aria-hidden="true">BAWADI</span><span class="t3-word-sub" aria-hidden="true"><i></i><b>AL DAIN</b><i></i></span></h1>
+      <p class="t3-place"><span ${t('hero.eyebrow')}</span></p>
       ${house}
       <p class="bw-cover-lede"><strong ${t('hero.head')}</strong> <span ${t('hero.lede')}</span></p>
       <div class="bw-actions">
