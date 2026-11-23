@@ -196,13 +196,13 @@
   var names = qs('.t3-net-names'), head = names && qs('.section-head', names.parentNode);
   if (names && head) {
     // [longitude, latitude] of each point; the hub is Dubai
-    var P = { dubai: [55.3, 25.2], sudan: [32.5, 15.6], mauritania: [-15.9, 18.1], kenya: [36.8, -1.3], somaliland: [44.1, 9.6], erbil: [44.0, 36.2] };
+    var P = { dubai: [55.3, 25.2], sudan: [32.5, 15.6], mauritania: [-15.9, 18.1], kenya: [36.8, -1.3], somaliland: [44.1, 9.6], erbil: [44.0, 36.2], qingdao: [120.4, 36.1] };
     var net = document.createElement('div');
     net.className = 't3-net';
     net.setAttribute('aria-hidden', 'true');
     head.appendChild(net);
     var draw = function () {
-      var xy = function (k) { return [(P[k][0] + 24) / 86 * 400 + 40, (44 - P[k][1]) / 52 * 250 + 30]; };
+      var xy = function (k) { return [(P[k][0] + 20) / 145 * 400 + 30, (44 - P[k][1]) / 52 * 250 + 30]; };
       var hub = xy('dubai'), svg = '<svg viewBox="0 0 480 320" role="presentation" focusable="false">';
       [150, 112, 74].forEach(function (r) { svg += '<circle class="ring" cx="240" cy="160" r="' + r + '"/>'; });
       Object.keys(P).forEach(function (k) {
@@ -212,7 +212,7 @@
       });
       Object.keys(P).forEach(function (k) {
         var p = xy(k), isHub = k === 'dubai', li = qs('[data-p="' + k + '"]', names), label = li ? li.textContent.trim() : '';
-        var left = k === 'sudan' || k === 'mauritania', dev = k === 'kenya' || k === 'somaliland';
+        var left = k === 'sudan' || k === 'mauritania' || k === 'qingdao', dev = k === 'kenya' || k === 'somaliland';
         if (isHub) { svg += '<circle class="pulse" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="7"/>'; }
         svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (isHub ? 7 : 4.2) + '" fill="' + (isHub || dev ? 'var(--lime)' : '#fff') + '"/>';
         svg += '<text x="' + (p[0] + (left ? -11 : 12)).toFixed(1) + '" y="' + (p[1] + (k === 'erbil' ? -9 : left ? 18 : 4)).toFixed(1) + '" text-anchor="' + (left !== rtl() ? 'end' : 'start') + '" direction="' + (rtl() ? 'rtl' : 'ltr') + '">' + esc(label) + '</text>';

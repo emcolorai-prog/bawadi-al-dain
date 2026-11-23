@@ -701,3 +701,8 @@ html[lang="ar"] .d3 .t3-place{font-size:clamp(13px,1.2vw,17px)}
 html[dir="rtl"] .d3 .t3-word-sub b{margin-inline-end:0;margin-inline-start:-.38em}
 @media (max-width:640px){.d3 .t3-word-sub b{font-size:clamp(24px,7.6vw,36px);letter-spacing:.26em!important;margin-inline-end:-.26em}html[dir="rtl"] .d3 .t3-word-sub b{margin-inline-start:-.26em}}
 @media (min-width:901px){.d3 .t3-leaves{margin-top:calc(var(--word) * .86 + var(--word) * .29 + 60px)}}
+
+/* Company names in Latin script keep left-to-right order inside the Arabic page */
+html[dir="rtl"] .bawadi.d3 .bw-country .co{direction:ltr;unicode-bidi:isolate;text-align:right}
+/* An odd last expansion card spans the full row instead of leaving a gap */
+.bawadi.d3 .bw-countries > .bw-country:last-child:nth-child(odd){grid-column:1 / -1}

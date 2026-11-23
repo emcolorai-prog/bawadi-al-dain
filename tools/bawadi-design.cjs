@@ -43,7 +43,7 @@ const B_NEW = {
     't3.j.label': 'From soil to port', 't3.j.hint': 'Scroll to fly through', 't3.j.stage': 'Stage', 't3.j.nav': 'Stages',
     't3.j1h': 'Grow', 't3.j2h': 'Forest', 't3.j3h': 'Hull &amp; sort', 't3.j4h': 'Process', 't3.j5h': 'Herds', 't3.j6h': 'Meat', 't3.j7h': 'Dubai',
     't3.lines': 'Six lines, <em>one group</em>',
-    't3.dubai': 'Dubai', 't3.erbil': 'Erbil',
+    't3.dubai': 'Dubai', 't3.erbil': 'Erbil', 't3.qingdao': 'Qingdao',
     't3.ai.eyebrow': 'Bawadi AI', 't3.ai.h': 'Ask. Draft. <em>Ship.</em>',
     't3.ai.p': 'Ask about products, capacity, livestock rules or certifications. Your trade enquiry drafts itself as you chat — then send it to the desk on WhatsApp or email.',
     't3.ai.bar': 'Bawadi AI · Trade terminal', 't3.ai.ph': 'Ask in English or عربي — e.g. 20 containers of sorghum to Jeddah', 't3.ai.ask': 'Ask',
@@ -68,7 +68,7 @@ const B_NEW = {
     't3.j.label': 'من التربة إلى الميناء', 't3.j.hint': 'مرّر للتنقّل بين المراحل', 't3.j.stage': 'المرحلة', 't3.j.nav': 'المراحل',
     't3.j1h': 'الزراعة', 't3.j2h': 'الغابات', 't3.j3h': 'التقشير والفرز', 't3.j4h': 'التصنيع', 't3.j5h': 'القطعان', 't3.j6h': 'اللحوم', 't3.j7h': 'دبي',
     't3.lines': 'ستة خطوط، <em>مجموعة واحدة</em>',
-    't3.dubai': 'دبي', 't3.erbil': 'أربيل',
+    't3.dubai': 'دبي', 't3.erbil': 'أربيل', 't3.qingdao': 'تشينغداو',
     't3.ai.eyebrow': 'مساعد بوادي', 't3.ai.h': 'اسأل. جهّز. <em>اشحن.</em>',
     't3.ai.p': 'اسأل عن المنتجات والطاقة الإنتاجية واشتراطات الماشية والشهادات. تُصاغ مسودة استفسارك التجاري أثناء المحادثة، ثم أرسلها إلى المكتب عبر واتساب أو البريد الإلكتروني.',
     't3.ai.bar': 'مساعد بوادي · منصّة التجارة', 't3.ai.ph': 'اسأل بالعربية أو English — مثال: 20 حاوية ذرة رفيعة إلى جدة', 't3.ai.ask': 'اسأل',
@@ -282,7 +282,7 @@ function bawadi(h, src, V) {
 
   // ---- Expansion: the points of the network drawing, named from the page's own words ----
   must(h.includes('<div class="bw-countries">'), 'countries');
-  h = h.replace('<div class="bw-countries">', `<ul class="t3-net-names" hidden><li data-p="dubai" ${t('t3.dubai')}</li><li data-p="sudan" ${t('t3.o.sudan')}</li><li data-p="mauritania" ${t('ex.1h')}</li><li data-p="kenya" ${t('ex.2h')}</li><li data-p="somaliland" ${t('ex.3h')}</li><li data-p="erbil" ${t('t3.erbil')}</li></ul>
+  h = h.replace('<div class="bw-countries">', `<ul class="t3-net-names" hidden><li data-p="dubai" ${t('t3.dubai')}</li><li data-p="sudan" ${t('t3.o.sudan')}</li><li data-p="mauritania" ${t('ex.1h')}</li><li data-p="kenya" ${t('ex.2h')}</li><li data-p="somaliland" ${t('ex.3h')}</li><li data-p="erbil" ${t('t3.erbil')}</li><li data-p="qingdao" ${t('t3.qingdao')}</li></ul>
       <div class="bw-countries">`);
 
   // ---- Footer wordmark ----

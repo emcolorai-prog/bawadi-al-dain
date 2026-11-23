@@ -374,6 +374,7 @@ const body = `<body class="company arrahma ar2">
         <figcaption><span class="a-eyebrow" ${t('x.target')}</span><div class="a-capgrid"><p><b ${t('x.cap1')}</b><small ${t('x.cap1u')}</small></p><p><b ${t('x.cap2')}</b><small ${t('x.cap2u')}</small></p><p><b ${t('x.cap3')}</b><small ${t('x.cap3u')}</small></p></div></figcaption>
       </figure>
       <div class="a-two"><p ${t('dev.p1')}</p><p ${t('dev.p2')}</p></div>
+      <div class="a-news" data-rv><span class="a-news-k" ${t('dev.vk')}</span><div><h3 ${t('dev.vh')}</h3><p ${t('dev.vp')}</p></div></div>
       <ul class="a-plans">${[1, 2, 3, 4].map((i) => `<li><h3 ${t('dev.l' + i + 'b')}</h3><p ${t('dev.l' + i)}</p></li>`).join('')}</ul>
       <div class="a-tabs" data-tabs>
         <div class="a-tablist" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0" ${t('gl.sh')}</button><button type="button" role="tab" aria-selected="false" data-tab="1" ${t('gl.lh')}</button></div>
