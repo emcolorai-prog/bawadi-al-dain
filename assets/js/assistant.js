@@ -317,7 +317,7 @@
   // ---------- Panel ----------
   var root = document.createElement('div');
   root.className = 'as-root';
-  var mark = base + (page === 'arrahma' ? 'assets/img/logos/arrahma-seal-160.png' : 'assets/img/logos/bawadi-mark.png');
+  var mark = base + (page === 'arrahma' ? 'assets/img/logos/arrahma-logo-160.png' : 'assets/img/logos/bawadi-mark.png');
   root.innerHTML =
     '<button type="button" class="as-fab" aria-expanded="false" aria-controls="as-panel">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.6 3.7A.9.9 0 0 1 5 19v-3.1A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +

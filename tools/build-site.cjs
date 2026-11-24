@@ -28,7 +28,7 @@ const DESIGN = {
 // [main photo, second photo]; the main photo keeps the original description (alt) unless altKey is set.
 const MEDIA = [
   { key: 'agriculture', a: ['assets/img/photos/seed-drill-tractor-1.jpg', 1080, 810], b: ['assets/img/brochure/peanuts.jpg', 784, 756] },
-  { key: 'cattle-sheep', a: ['assets/img/photos/cattle-pen.jpg', 1280, 960], b: ['assets/media/bawadi/sheep-flock-poster.jpg', 1024, 576] },
+  { key: 'cattle-sheep', a: ['assets/img/photos/cattle-pen.jpg', 1280, 960], b: ['assets/media/bawadi/sheep-flock-still.jpg', 720, 540] },
   { key: 'camels', a: ['assets/img/brochure/camels.jpg', 740, 900] },
   { key: 'gum-arabic', a: ['assets/img/photos/gum-arabic-basket.jpg', 1040, 780], b: ['assets/img/photos/gum-arabic-raw.jpg', 1280, 720] },
   { key: 'grains-oilseeds', a: ['assets/img/brochure/grains-oils.jpg', 720, 520], b: ['assets/img/brochure/sunflower-oil.jpg', 672, 536] },

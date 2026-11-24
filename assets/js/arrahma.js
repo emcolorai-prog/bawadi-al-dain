@@ -112,9 +112,9 @@
         if (!moving && (Math.abs(vx[i]) > 0.05 || Math.abs(vy[i]) > 0.05)) { moving = true; }
       }
       draw();
-      if (moving || mouse.x > -1e3) { requestAnimationFrame(tick); } else { running = false; }
+      if (moving || mouse.x > -1e3) { requestAnimationFrame(tick); } else { running = false; box.classList.remove('is-stirring'); }   // settled: the crisp logo shows again
     };
-    var wake = function () { if (ready && !running) { running = true; requestAnimationFrame(tick); } };
+    var wake = function () { if (!ready) { return; } box.classList.add('is-stirring'); if (!running) { running = true; requestAnimationFrame(tick); } };
     box.addEventListener('pointermove', function (e) {
       var r = cv.getBoundingClientRect(), s = W / r.width;
       mouse.x = (e.clientX - r.left) * s; mouse.y = (e.clientY - r.top) * s; wake();

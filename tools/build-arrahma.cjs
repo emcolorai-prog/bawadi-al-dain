@@ -103,6 +103,8 @@ head = head.replace(/<link href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*" 
 head = head.replace(/<link rel="stylesheet" href="[^"]*(?:brochure|style|wheel|design-\d[^"]*)\.css[^"]*">\n?/g, '');
 head = head.replace(/(<link rel="stylesheet" href="\.\.\/assets\/css\/corporate\.css[^"]*">)/, `$1\n<link rel="stylesheet" href="../assets/css/arrahma.css?v=${V}">\n<link rel="stylesheet" href="../assets/css/assistant.css?v=${V}">`);
 head = head.replace(/<meta name="theme-color" content="[^"]*">/, '<meta name="theme-color" content="#1C1410">');
+// The new high-resolution logo (from the client's logo PDF) for the browser tab and link previews
+head = head.split('assets/img/logos/arrahma-seal.png').join('assets/img/logos/arrahma-logo-1200.png'); head = head.replace(/xx-no-match-xx/g,'assets/img/logos/arrahma-logo-1200.png').replace(/(<link rel="icon"[^>]*href=")[^"]*(")/, '$1../assets/img/logos/arrahma-logo-160.png$2');
 const i18nScript = grab(/<script>\s*var ARRAHMA[\s\S]*?<\/script>/, 'i18n script');
 const form = grab(/<form class="enq"[\s\S]*?<\/form>/, 'form');
 const galleryList = grab(/<ul class="media-grid" data-gallery>[\s\S]*?<\/ul>/, 'gallery list');
@@ -110,7 +112,7 @@ const cos = grab(/<div class="ar-cos">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/, 'gro
 const msRows = [...grab(/<dl class="ms-table">[\s\S]*?<\/dl>/, 'milestones').matchAll(/<div[^>]*>\s*<dt>([\s\S]*?)<\/dt>\s*<dd data-i18n="([^"]+)">([\s\S]*?)<\/dd>\s*<\/div>/g)];
 must(msRows.length === 7, 'seven milestones');
 const arabicName = must((src.match(/<span lang="ar" dir="rtl">(الرحمة للإنتاج الزراعي[^<]*)<\/span>/) || [])[1], 'arabic name');
-const seal400 = '../assets/img/logos/arrahma-seal-400.png';
+const seal400 = '../assets/img/logos/arrahma-logo-400.png';
 // Aleg clips, in stage order
 const build = grab(/<ol class="ar-build"[\s\S]*?<\/ol>/, 'aleg stages');
 const clips = [];
@@ -145,7 +147,7 @@ const body = `<body class="company arrahma ar2">
   </div></div>
   <div class="a-bar"><div class="a-wrap a-bar-in">
     <a class="a-brand" href="#top" data-i18n-aria-label="brand.aria" aria-label="Arrahma — back to top">
-      <img src="../assets/img/logos/arrahma-seal-160.png" alt="" width="160" height="153">
+      <img src="../assets/img/logos/arrahma-logo-400.png" alt="" width="400" height="384">
       <span lang="fr"><b>Arrahma</b><small>Production Agricole et Animale</small></span>
     </a>
     <nav id="main-nav" class="a-nav" data-i18n-aria-label="nav.aria" aria-label="Main">
@@ -188,7 +190,7 @@ const body = `<body class="company arrahma ar2">
       </div>
       <div class="a-sand" aria-hidden="true">
         <p class="a-sand-hint" ${t('x.sand')}</p>
-        <div class="a-sand-ring"><img class="a-sand-img" src="${seal400}" alt="" width="400" height="383"><canvas class="a-sand-cv"></canvas></div>
+        <div class="a-sand-ring"><img class="a-sand-img" src="${seal400}" alt="" width="400" height="384"><canvas class="a-sand-cv"></canvas></div>
       </div>
     </div>
     <span class="a-scroll" ${t('x.scroll')}</span>
@@ -237,7 +239,7 @@ const body = `<body class="company arrahma ar2">
           <p ${t('st.p2')}</p>
         </div>
         <article class="a-founder" data-rv>
-          <img class="a-founder-seal" src="../assets/img/logos/arrahma-seal-160.png" alt="" width="160" height="153">
+          <img class="a-founder-seal" src="../assets/img/logos/arrahma-logo-400.png" alt="" width="400" height="384">
           <p class="a-eyebrow" ${t('st.frole')}</p>
           <h3 ${t('st.fn')}</h3>
           <p ${t('st.fp')}</p>
@@ -483,7 +485,7 @@ const body = `<body class="company arrahma ar2">
 
 <footer class="a-foot">
   <div class="a-wrap a-foot-in">
-    <p><img src="../assets/img/logos/arrahma-seal-160.png" alt="" width="160" height="153"><span ${t('f.copy')}</span></p>
+    <p><img src="../assets/img/logos/arrahma-logo-400.png" alt="" width="400" height="384"><span ${t('f.copy')}</span></p>
     <p lang="ar" dir="rtl">${arabicName}</p>
   </div>
 </footer>

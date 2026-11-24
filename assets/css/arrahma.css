@@ -602,3 +602,11 @@ html[lang="ar"] .a-news-k{font-size:13px}
 .a-news h3{margin:0 0 4px!important;font-size:clamp(19px,1.9vw,24px)}
 .a-news p{margin:0!important;font-size:13.5px;color:var(--text)}
 @media (max-width:640px){.a-news{flex-direction:column;align-items:flex-start;gap:10px}}
+
+/* ---------- Hero logo: the crisp logo shows by default; it turns to sand only while the cursor stirs it ---------- */
+.a-sand-img{filter:none;transition:opacity .45s ease}
+.a-sand-cv{opacity:0;transition:opacity .45s ease}
+.a-sand.is-live .a-sand-img{opacity:1}
+.a-sand.is-live.is-stirring .a-sand-img{opacity:0}
+.a-sand.is-live.is-stirring .a-sand-cv{opacity:1}
+.a-sand-img{filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
