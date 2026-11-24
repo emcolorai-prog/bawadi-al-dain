@@ -619,3 +619,4 @@ html[lang="ar"] .a-card-p figcaption{font-family:"Amiri",serif;font-style:normal
 .a-card-p .a-cp-play{top:calc(50% - 50px)}
 .a-deck{height:clamp(340px,33vw,440px)}
 @media (max-width:640px){.a-deck{height:350px}}
+.bw-wheel-hint{display:none!important}

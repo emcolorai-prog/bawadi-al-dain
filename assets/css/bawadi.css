@@ -711,3 +711,4 @@ html[dir="rtl"] .bawadi.d3 .bw-country .co{direction:ltr;unicode-bidi:isolate;te
 .bawadi.d3 .bw-lines [data-media="cattle-sheep"]{padding-bottom:9%}
 .bawadi.d3 .bw-lines [data-media="cattle-sheep"] .m2{display:block;position:absolute;z-index:2;inset-inline-end:-2%;bottom:0;width:50%;aspect-ratio:4/3;object-fit:cover;border:6px solid var(--deep);border-radius:18px;box-shadow:0 30px 50px -24px rgba(0,0,0,.85)}
 @media (max-width:640px){.bawadi.d3 .bw-lines [data-media="cattle-sheep"] .m2{inset-inline-end:0;width:54%;border-width:4px;border-radius:14px}}
+.bw-wheel-hint{display:none!important}

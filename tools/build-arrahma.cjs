@@ -129,10 +129,10 @@ const info = grab(/<dl class="info-list">[\s\S]*?<\/dl>/, 'contact list');
 const SECTIONS = [['top', 'x.nav.sites'], ['about', 'nav.about'], ['story', 'st.eyebrow'], ['why', 'wy.eyebrow'], ['vision', 'vs.eyebrow'], ['journey', 'x.nav.sites'], ['production', 'x.nav.farm'],
   ['goals', 'gl.eyebrow'], ['aleg', 'x.nav.films'], ['development', 'nav.development'], ['milestones', 'nav.milestones'], ['gallery', 'nav.gallery'], ['ask', 'x.ai.eyebrow'], ['sites', 'sites.eyebrow'], ['contact', 'x.nav.contact']];
 
-const whyImgs = [[M + 'harrowing-poster.jpg', 960, 540], [M + 'herd-range-poster.jpg', 640, 360], [P + 'feedlot-three-men.jpg', 1280, 720], [M + 'cattle.jpg', 1020, 765], [P + 'omani-delegation-vet-directorate.jpg', 1024, 576], [M + 'maize-seedlings.jpg', 1600, 1200]];
+const whyImgs = [[M + 'borehole-poster.jpg', 360, 640], [M + 'herd-range-poster.jpg', 640, 360], [P + 'feedlot-three-men.jpg', 1280, 720], [M + 'cattle.jpg', 1020, 765], [P + 'omani-delegation-vet-directorate.jpg', 1024, 576], [M + 'grain-crop-poster.jpg', 480, 848]];
 const journeySites = [
-  { k: 1, lon: -15.98, lat: '18.1°N · 15.9°W', label: 'x.hq', img: [P + 'nouakchott-slaughterhouse-render-1000.jpg', 1000, 666], ops: [1] },
-  { k: 2, lon: -13.92, lat: '17.1°N · 13.9°W', label: 'x.since25', img: [M + 'aleg-drone-2-poster.jpg', 960, 540], ops: [2, 3] },
+  { k: 1, lon: -15.98, lat: '18.1°N · 15.9°W', label: 'x.hq', img: [P + 'nouakchott-gate.jpg', 544, 248], ops: [1] },
+  { k: 2, lon: -13.92, lat: '17.1°N · 13.9°W', label: 'x.since25', img: [M + 'cattle-site-poster.jpg', 640, 360], ops: [2, 3] },
   { k: 3, lon: -7.25, lat: '16.6°N · 7.3°W', label: 'x.planned', img: [M + 'harrowing-poster.jpg', 960, 540], ops: [4] }
 ];
 
@@ -189,11 +189,9 @@ const body = `<body class="company arrahma ar2">
         </dl>
       </div>
       <div class="a-sand" aria-hidden="true">
-        <p class="a-sand-hint" ${t('x.sand')}</p>
         <div class="a-sand-ring"><img class="a-sand-img" src="${seal400}" alt="" width="400" height="384"><canvas class="a-sand-cv"></canvas></div>
       </div>
     </div>
-    <span class="a-scroll" ${t('x.scroll')}</span>
   </section>
 
   <section class="a-fly" data-fly aria-labelledby="fly-title">
@@ -259,7 +257,7 @@ const body = `<body class="company arrahma ar2">
     <div class="a-wrap">
       <p class="a-eyebrow" ${t('wy.eyebrow')}</p>
       <h2 id="why-title" class="a-h2"${em({ en: 'Mauritania', ar: 'موريتانيا؟', fr: 'Mauritanie' })} ${t('wy.h2')}</h2>
-      <p class="a-lead"><span ${t('wy.note')}</span><br><span ${t('x.hover')}</span></p>
+      <p class="a-lead" ${t('wy.note')}</p>
       <ol class="a-panels" data-panels>${[1, 2, 3, 4, 5, 6].map((i) => `<li${i === 1 ? ' class="is-on"' : ''} tabindex="0">${img(whyImgs[i - 1][0], whyImgs[i - 1][1], whyImgs[i - 1][2])}<span class="a-pn">${ROMAN[i - 1]}</span><p ${t('wy.' + i)}</p></li>`).join('')}</ol>
     </div>
   </section>
@@ -287,7 +285,6 @@ const body = `<body class="company arrahma ar2">
         <div class="a-jgrid"><div class="a-jmain">
         <p class="a-eyebrow"><span data-i18n="ops.eyebrow">Our Operations</span> — <span data-i18n="x.ops.reported">As reported by the company</span></p>
         <h2 id="journey-title" class="a-h2" ${t('x.ops.h')}</h2>
-        <p class="a-lead" ${t('x.ops.p')}</p>
         <div class="a-map">
           <svg class="a-dunes" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><path class="d1" d="M0 120C120 90 230 80 360 104s260 40 380 10 190-30 260-12v78H0Z"/><path class="d2" d="M0 150c140-30 290-38 450-14s330 30 550-8v72H0Z"/><path class="route" d="" /></svg>
           <span class="a-atl" ${t('x.atlantic')}</span>
@@ -321,7 +318,7 @@ const body = `<body class="company arrahma ar2">
       <div class="a-prod-art">
         <figure class="a-arch a-arch-t">${img(M + 'seedling-row.jpg', 1200, 1600, esc(textOf('g.seedling-row')), ' data-i18n-alt="g.seedling-row"')}</figure>
         <figure class="a-ph">${img(M + 'herd.jpg', 1020, 765, esc(textOf('g.herd')), ' data-i18n-alt="g.herd"')}</figure>
-        <figure class="a-ph">${img(P + 'seed-drill-tractor-2.jpg', 1080, 810, esc(textOf('gal.5c')), ' data-i18n-alt="gal.5c"')}</figure>
+        <figure class="a-ph">${img(M + 'disc-harrow-poster.jpg', 960, 540, esc(textOf('g.disc-harrow')), ' data-i18n-alt="g.disc-harrow"')}</figure>
       </div>
     </div>
   </section>
@@ -333,7 +330,7 @@ const body = `<body class="company arrahma ar2">
           <div>
             <p class="a-eyebrow" ${t('gl.eyebrow')}</p>
             <h2 id="goals-title" class="a-h3"${em({ en: 'across Mauritania', ar: 'في أنحاء موريتانيا', fr: 'en Mauritanie' })} ${t('gl.h2')}</h2>
-            <p><span ${t('gl.p')}</span> <span ${t('x.choose')}</span></p>
+            <p ${t('gl.p')}</p>
           </div>
           <div class="a-pick" role="group">${[1, 2, 3, 4, 5].map((i) => `<button type="button" data-n="${i}" aria-pressed="${i === 1}" class="ltr">${i}</button>`).join('')}</div>
         </div>
@@ -352,7 +349,7 @@ const body = `<body class="company arrahma ar2">
     <div class="a-wrap">
       <div class="a-aleg-head">
         <div><p class="a-eyebrow" ${t('bd.eyebrow')}</p><h2 id="build-title" class="a-h2"${em({ en: 'Aleg', ar: 'ألاك', fr: 'd’Aleg' })} ${t('bd.h2')}</h2></div>
-        <p><span ${t('bd.p')}</span> <span ${t('x.drag')}</span></p>
+        <p ${t('bd.p')}</p>
       </div>
       <div class="a-player" data-player>
         <div class="a-screen">
@@ -417,7 +414,7 @@ const body = `<body class="company arrahma ar2">
       <div class="a-gal-text">
         <p class="a-eyebrow" ${t('gal.eyebrow')}</p>
         <h2 id="gal-title" class="a-h2"${em({ en: 'site', ar: 'مواقعنا', fr: 'terrain' })} ${t('gal.h2')}</h2>
-        <p><span ${t('gal.p')}</span> <span ${t('x.deck')}</span></p>
+        <p ${t('gal.p')}</p>
         <div class="a-filters" role="group">
           <button type="button" data-f="all" aria-pressed="true"><span ${t('wh.all')}</span> <b class="ltr"></b></button>
           <button type="button" data-f="livestock" aria-pressed="false"><span ${t('wh.live')}</span> <b class="ltr"></b></button>

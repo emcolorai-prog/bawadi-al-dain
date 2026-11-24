@@ -89,8 +89,8 @@ const BOARD = [
 ];
 // The journey: [title key, text key, [fact keys], photo, width, height]
 const JOURNEY = [
-  ['t3.j1h', 'ln.6p', ['sd.f4b', 'sd.f1b'], 'assets/img/photos/seed-drill-tractor-1.jpg', 1080, 810],
-  ['t3.j2h', 't3.j2p', ['p1', 'p2'], 'assets/img/photos/gum-arabic-basket.jpg', 1040, 780],
+  ['t3.j1h', 'ln.6p', ['sd.f4b', 'sd.f1b'], 'assets/img/photos/seed-drill-tractor-2.jpg', 1080, 810],
+  ['t3.j2h', 't3.j2p', ['p1', 'p2'], 'assets/media/bawadi/gum-talha-store-2.jpg', 1280, 960],
   ['t3.j3h', 't3.j3p', ['fc.3b', 'fc.4b'], 'assets/media/bawadi/processing-line.jpg', 1280, 960],
   ['t3.j4h', 't3.j4p', ['fc.1ab', 'fc.1cb'], 'assets/img/brochure/oil-factory.jpg', 700, 445],
   ['t3.j5h', 'ln.1p2', ['ln.1h', 'ln.2h'], 'assets/img/photos/cattle-pen.jpg', 1280, 960],
@@ -136,10 +136,10 @@ function bawadi(h, src, V) {
   const items = MARQUEE.map((k) => `<span ${t(k)}</span>${leaf}`).join('');
   h = h.replace(heroRe, `<section class="bw-cover t3-hero" aria-labelledby="hero-title">
     <div class="t3-leaves" aria-hidden="true">
-      <span class="t3-leaf l1">${img('assets/img/photos/gum-arabic-basket.jpg', 1040, 780, ' decoding="async"')}</span>
-      <span class="t3-leaf l2">${img('assets/img/photos/cattle-pen.jpg', 1280, 960, ' decoding="async"')}</span>
-      <span class="t3-leaf l3">${img('assets/img/brochure/camels.jpg', 740, 900, ' decoding="async"')}</span>
-      <span class="t3-leaf l4">${img('assets/img/photos/sorghum-heads.jpg', 765, 1020, ' decoding="async"')}</span>
+      <span class="t3-leaf l1">${img('assets/media/bawadi/gum-talha-sack.jpg', 1280, 960, ' decoding="async"')}</span>
+      <span class="t3-leaf l2">${img('assets/img/photos/hero-wide.jpg', 1280, 560, ' decoding="async"')}</span>
+      <span class="t3-leaf l3">${img('assets/media/bawadi/camels-poster.jpg', 352, 640, ' decoding="async"')}</span>
+      <span class="t3-leaf l4">${img('assets/media/bawadi/cattle-troughs-poster.jpg', 640, 356, ' decoding="async"')}</span>
     </div>
     <div class="t3-hero-in">
       <h1 id="hero-title" class="t3-word" lang="en" dir="ltr"><span class="sr-only">Bawadi Al Dain General Trading L.L.C</span><span class="t3-word-fill" aria-hidden="true">BAWADI</span><span class="t3-word-sub" aria-hidden="true"><i></i><b>AL DAIN</b><i></i></span></h1>
@@ -183,7 +183,7 @@ function bawadi(h, src, V) {
           <p class="eyebrow" ${t('t3.desk.eyebrow')}</p>
           <h2 id="desk-title" ${t('t3.desk.h')}</h2>
         </div>
-        <p><span ${t('prod.p')}</span> <span ${t('t3.desk.tap')}</span></p>
+        <p ${t('prod.p')}</p>
       </div>
       <div class="t3-board" data-t3-board data-reveal>
         <div class="t3-board-top"><span><span class="ltr" lang="en">Bawadi Al Dain</span> · <span ${t('f.addr')}</span></span><span class="t3-open"><i aria-hidden="true"></i><span ${t('t3.b.open')}</span></span></div>
@@ -199,7 +199,7 @@ function bawadi(h, src, V) {
 
   <section id="journey" class="t3-journey" aria-labelledby="journey-title" data-t3-journey>
     <div class="t3-j-track"><div class="t3-j-sticky">
-      <h2 class="t3-j-top" id="journey-title"><span ${t('t3.j.label')}</span><i aria-hidden="true">·</i><span class="t3-j-hint" ${t('t3.j.hint')}</span></h2>
+      <h2 class="t3-j-top" id="journey-title"><span ${t('t3.j.label')}</span></h2>
       <ol class="t3-j-list">
         ${stages}
       </ol>
