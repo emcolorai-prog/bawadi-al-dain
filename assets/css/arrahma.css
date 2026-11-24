@@ -610,3 +610,12 @@ html[lang="ar"] .a-news-k{font-size:13px}
 .a-sand.is-live.is-stirring .a-sand-img{opacity:0}
 .a-sand.is-live.is-stirring .a-sand-cv{opacity:1}
 .a-sand-img{filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
+
+/* ---------- Gallery cards: the caption is always shown in full, however long ---------- */
+.a-card-p{display:flex;flex-direction:column;padding:10px 10px 12px}
+.a-card-p img{flex:1 1 auto;min-height:0;height:auto}
+.a-card-p figcaption{position:static;flex:none;margin-top:9px;padding:0 4px;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.35;font-size:13.5px}
+html[lang="ar"] .a-card-p figcaption{font-family:"Amiri",serif;font-style:normal;font-size:14px}
+.a-card-p .a-cp-play{top:calc(50% - 50px)}
+.a-deck{height:clamp(340px,33vw,440px)}
+@media (max-width:640px){.a-deck{height:350px}}
