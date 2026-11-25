@@ -620,3 +620,8 @@ html[lang="ar"] .a-card-p figcaption{font-family:"Amiri",serif;font-style:normal
 .a-deck{height:clamp(340px,33vw,440px)}
 @media (max-width:640px){.a-deck{height:350px}}
 .bw-wheel-hint{display:none!important}
+
+/* ---------- Long captions: kept exactly, line breaks included; the card shows the start, the viewer shows all ---------- */
+.media-cap,.lb-cap{white-space:pre-line}
+.a-card-p figcaption{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.lb-cap{max-height:34vh;overflow-y:auto}
