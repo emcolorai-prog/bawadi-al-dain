@@ -215,7 +215,9 @@
         var left = k === 'sudan' || k === 'mauritania' || k === 'qingdao', dev = k === 'kenya' || k === 'somaliland';
         if (isHub) { svg += '<circle class="pulse" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="7"/>'; }
         svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (isHub ? 7 : 4.2) + '" fill="' + (isHub || dev ? 'var(--lime)' : '#fff') + '"/>';
-        svg += '<text x="' + (p[0] + (left ? -11 : 12)).toFixed(1) + '" y="' + (p[1] + (k === 'erbil' ? -9 : left ? 18 : 4)).toFixed(1) + '" text-anchor="' + (left !== rtl() ? 'end' : 'start') + '" direction="' + (rtl() ? 'rtl' : 'ltr') + '">' + esc(label) + '</text>';
+        // Mauritania sits at the far west edge: its name goes under the dot, reading inward, so it never runs off the drawing
+        if (k === 'mauritania') { svg += '<text x="' + (p[0] - 6).toFixed(1) + '" y="' + (p[1] + 20).toFixed(1) + '" text-anchor="' + (rtl() ? 'end' : 'start') + '" direction="' + (rtl() ? 'rtl' : 'ltr') + '">' + esc(label) + '</text>'; return; }
+        svg += '<text x="' + (p[0] + (left ? -11 : (isHub ? 17 : 12))).toFixed(1) + '" y="' + (p[1] + (k === 'erbil' ? -9 : left ? 18 : 4)).toFixed(1) + '" text-anchor="' + (left !== rtl() ? 'end' : 'start') + '" direction="' + (rtl() ? 'rtl' : 'ltr') + '">' + esc(label) + '</text>';
       });
       net.innerHTML = svg + '</svg>';
     };
